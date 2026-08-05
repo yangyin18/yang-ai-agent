@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: yang-mcp
+  profiles:
+    active: stdio
+pexels:
+  api:
+    key: VlXZaYhTOUWx6edxfaU6RBOYS4e4sTCOdobd0IhmSajxC4nHSNO8tzlq
+server:
+  port: 8127

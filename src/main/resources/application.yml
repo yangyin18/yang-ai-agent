@@ -1,0 +1,34 @@
+spring:
+  application:
+    name: yang-ai-agent
+  profiles:
+    active: local
+  autoconfigure:
+    exclude:
+      # DashScope SDK 2.16.0 引用了 spring-ai-alibaba 的 auto-config 但项目未引入该依赖
+      - com.alibaba.cloud.ai.autoconfigure.dashscope.DashScopeAutoConfiguration
+      - com.alibaba.cloud.ai.autoconfigure.dashscope.DashScopeMultimodalEmbeddingAutoConfiguration
+      # MCP client 1.0.0-M6 与 Spring AI 2.0 不兼容，缺少 ClientMcpTransport 类
+      - org.springframework.ai.autoconfigure.mcp.client.SseHttpClientTransportAutoConfiguration
+
+server:
+  port: 8123
+  servlet:
+    context-path: /api
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+    tags-sorter: alpha
+    operations-sorter: alpha
+  api-docs:
+    path: /v3/api-docs
+  group-configs:
+    - group: 'default'
+      paths-to-match: '/**'
+      packages-to-scan: com.cg.yangaiagent.controller,com.cg.yangaiagent.web
+
+knife4j:
+  enable: true
+  setting:
+    language: zh_cn
